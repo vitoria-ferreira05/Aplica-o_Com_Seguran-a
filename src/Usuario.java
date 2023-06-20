@@ -8,19 +8,11 @@ public class Usuario {
 
     public Usuario(String email, String senha) {
         this.email = email;
-        this.senha = criptografarSenha(senha);
+        this.senha = ControleSistema.criptografarSenha(senha);
     }
 
-    private static String criptografarSenha(String senha){
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] bty = senha.getBytes();
-            md.update(bty, 0, senha.length());
-            return new BigInteger(1, md.digest()).toString(16);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getEmail() {
+        return email;
     }
 
     public String getSenha() {
