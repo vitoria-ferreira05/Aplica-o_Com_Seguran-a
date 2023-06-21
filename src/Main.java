@@ -23,6 +23,7 @@ public class Main {
                     break;
                 case 3:
                     ControleSistema.mostrarUsuariosCadastrados();
+                    break;
                 case 4:
                     System.exit(0);
                     break;
