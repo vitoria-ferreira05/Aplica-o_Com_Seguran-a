@@ -63,7 +63,7 @@ public class ControleSistema {
 
     private static String criptografarSenha(String senha){
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] bty = senha.getBytes();
             md.update(bty, 0, senha.length());
             return new BigInteger(1, md.digest()).toString(16);
