@@ -2,12 +2,10 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ControleSistema {
     static Scanner entrada = new Scanner(System.in);
-
     static List<Usuario> usuariosCadastrados = new ArrayList<>();
 
     public static void entrar(){
@@ -26,17 +24,9 @@ public class ControleSistema {
             if(usuario.getEmail().equals(email) && usuario.getSenha().equals(senhaCriptografada)){
                 System.out.println("Login realizado com sucesso!");
             } else {
-                System.out.println("Ocorreu um erro! Tente novamente");
+                System.out.println("Email ou senha inválida!");
             }
         }
-
-//        for (Map.Entry<String, Usuario> usuario : usuariosCadastrados.entrySet()) {
-//            if(usuariosCadastrados.containsKey(email)){
-//                usuariosCadastrados.v
-//            } else {
-//                System.out.println("Ocorreu um erro! Tente novamente");
-//            }
-//        }
     }
 
     public static void cadastrar(){
@@ -52,9 +42,21 @@ public class ControleSistema {
         String senhaCriptografada = criptografarSenha(senha);
 
         usuariosCadastrados.add(new Usuario(email, senhaCriptografada));
+
+        System.out.println("Usuário Cadastrado Com Sucesso!");
     }
 
-    public static String criptografarSenha(String senha){
+    public static void mostrarUsuariosCadastrados() {
+        if(usuariosCadastrados.isEmpty()){
+            System.out.println("Nenhum usuário cadastrado!");
+        } else {
+            for(Usuario usuario : usuariosCadastrados){
+                System.out.println(usuario.toString());
+            }
+        }
+    }
+
+    private static String criptografarSenha(String senha){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] bty = senha.getBytes();

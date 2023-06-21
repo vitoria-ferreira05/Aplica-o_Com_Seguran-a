@@ -4,15 +4,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
-        int opcao = 0;
         do{
             System.out.println("""
                     \nBem vindo! O que deseja fazer?
                     \t1 - Entrar
                     \t2 - Cadastrar
-                    \t3 - Sair
+                    \t3 - Mostrar Usuários Cadastrados
+                    \t4 - Sair
                     """);
-            opcao = entrada.nextInt();
+            int opcao = entrada.nextInt();
 
             switch (opcao){
                 case 1:
@@ -22,12 +22,14 @@ public class Main {
                     ControleSistema.cadastrar();
                     break;
                 case 3:
+                    ControleSistema.mostrarUsuariosCadastrados();
+                case 4:
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Opção Inválida! Tente novamente!");
             }
-        }while (opcao!=3);
+        }while (true);
 
     }
 }
