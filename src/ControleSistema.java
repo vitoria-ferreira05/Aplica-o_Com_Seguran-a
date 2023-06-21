@@ -6,10 +6,7 @@ import java.util.Scanner;
 
 public class ControleSistema {
     static Scanner entrada = new Scanner(System.in);
-
     static List<Usuario> usuariosCadastrados = new ArrayList<>();
-    static List<Usuario> novoUsuarioCadastrado = new ArrayList<>();
-
 
     public static void entrar(){
         System.out.print("Digite o email: ");
@@ -27,7 +24,7 @@ public class ControleSistema {
             if(usuario.getEmail().equals(email) && usuario.getSenha().equals(senhaCriptografada)){
                 System.out.println("Login realizado com sucesso!");
             } else {
-                System.out.println("Ocorreu um erro! Tente novamente");
+                System.out.println("Email ou senha inválida!");
             }
         }
 
@@ -40,7 +37,7 @@ public class ControleSistema {
 //        }
     }
 
-    public static Usuario cadastrar(){
+    public static void cadastrar(){
         System.out.print("Digite o email: ");
         String email = entrada.nextLine();
 
@@ -54,12 +51,21 @@ public class ControleSistema {
 
         usuariosCadastrados.add(new Usuario(email, senhaCriptografada));
 
-        System.out.println("Cadastro realizado com sucesso!");
-        return new Usuario(email, senha);
+        System.out.println("Usuário Cadastrado Com Sucesso!");
 
     }
 
-    public static String criptografarSenha(String senha){
+    public static void mostrarUsuariosCadastrados() {
+        if(usuariosCadastrados.isEmpty()){
+            System.out.println("Nenhum usuário cadastrado!");
+        } else {
+            for(Usuario usuario : usuariosCadastrados){
+                System.out.println(usuario.toString());
+            }
+        }
+    }
+
+    private static String criptografarSenha(String senha){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] bty = senha.getBytes();
