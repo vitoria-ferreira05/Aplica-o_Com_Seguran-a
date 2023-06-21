@@ -2,13 +2,14 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ControleSistema {
     static Scanner entrada = new Scanner(System.in);
 
     static List<Usuario> usuariosCadastrados = new ArrayList<>();
+    static List<Usuario> novoUsuarioCadastrado = new ArrayList<>();
+
 
     public static void entrar(){
         System.out.print("Digite o email: ");
@@ -39,7 +40,7 @@ public class ControleSistema {
 //        }
     }
 
-    public static void cadastrar(){
+    public static Usuario cadastrar(){
         System.out.print("Digite o email: ");
         String email = entrada.nextLine();
 
@@ -52,6 +53,10 @@ public class ControleSistema {
         String senhaCriptografada = criptografarSenha(senha);
 
         usuariosCadastrados.add(new Usuario(email, senhaCriptografada));
+
+        System.out.println("Cadastro realizado com sucesso!");
+        return new Usuario(email, senha);
+
     }
 
     public static String criptografarSenha(String senha){
