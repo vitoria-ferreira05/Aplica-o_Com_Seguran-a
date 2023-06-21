@@ -20,21 +20,17 @@ public class ControleSistema {
         String senha = entrada.nextLine();
         String senhaCriptografada = criptografarSenha(senha);
 
-        for (Usuario usuario: usuariosCadastrados) {
-            if(usuario.getEmail().equals(email) && usuario.getSenha().equals(senhaCriptografada)){
-                System.out.println("Login realizado com sucesso!");
-            } else {
-                System.out.println("Email ou senha inválida!");
+        if(usuariosCadastrados.isEmpty()){
+            System.out.println("Usuário não cadastrado!");
+        } else{
+            for (Usuario usuario: usuariosCadastrados) {
+                if(usuario.getEmail().equals(email) && usuario.getSenha().equals(senhaCriptografada)){
+                    System.out.println("Login realizado com sucesso!");
+                } else {
+                    System.out.println("Email ou senha inválida!");
+                }
             }
         }
-
-//        for (Map.Entry<String, Usuario> usuario : usuariosCadastrados.entrySet()) {
-//            if(usuariosCadastrados.containsKey(email)){
-//                usuariosCadastrados.v
-//            } else {
-//                System.out.println("Ocorreu um erro! Tente novamente");
-//            }
-//        }
     }
 
     public static void cadastrar(){
